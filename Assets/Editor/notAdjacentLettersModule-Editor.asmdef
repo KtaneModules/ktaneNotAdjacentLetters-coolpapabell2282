@@ -1,0 +1,10 @@
+{
+  "name": "notAdjacentLettersModule-Editor",
+  "references": [
+    "notAdjacentLettersModule"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
