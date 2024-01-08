@@ -457,6 +457,7 @@ IEnumerator ProcessTwitchCommand(string command)
         command = command.ToUpperInvariant().Trim();
 	if (command == "SUBMIT")
 	{
+		yield return null;
 		SubmitButton.OnInteract();
 		yield return null;
 	}
@@ -469,7 +470,8 @@ IEnumerator ProcessTwitchCommand(string command)
 		{
 			for(var i =0; i<parameters.Count; i++)
 			{
-				Click(Int32.Parse(parameters[i]));
+				yield return null;
+				Buttons[Int32.Parse(parameters[i])].OnInteract();
 				yield return new WaitForSeconds(.3f);
 			}
 		} else {
@@ -483,6 +485,7 @@ IEnumerator ProcessTwitchCommand(string command)
 
     IEnumerator TwitchHandleForcedSolve ()
     {
+	yield return null;
         if(!_isSolved)
 	{
 		_selected=13;
@@ -490,9 +493,9 @@ IEnumerator ProcessTwitchCommand(string command)
 		{
 			if(_grid[i] != _origGrid[i])
 			{	
-				Click(i);
+				Buttons[i].OnInteract();
 				yield return new WaitForSeconds(.1f);
-				Click(new String(_grid).IndexOf(_origGrid[i]));
+				Buttons[new String(_grid).IndexOf(_origGrid[i])].OnInteract();
 			}
 		}
 		SubmitButton.OnInteract();
